@@ -1,1 +1,2 @@
 TASK MANAGER --
+A "Task Manager Application" is a web-based platform designed to help users efficiently organize and track their tasks by allowing them to create, edit, prioritize, and manage their to-do list with features like due dates, status updates, and task categorization, often including user authentication for personalized task management. 
