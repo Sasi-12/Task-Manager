@@ -7,3 +7,10 @@ export default defineConfig({
     port: 3000,
   },
 });
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};

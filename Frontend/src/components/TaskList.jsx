@@ -1,26 +1,42 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
-const TaskList = ({ tasks, toggleCompletion, deleteTask }) => {
+const TaskList = ({ tasks, fetchTasks }) => {
+  const handleDelete = async (id) => {
+    await axios.delete(`http://localhost:5000/tasks/${id}`);
+    fetchTasks();
+  };
+
+  const toggleCompletion = async (task) => {
+    await axios.put(`http://localhost:5000/tasks/${task._id}`, {
+      ...task,
+      isCompleted: !task.isCompleted,
+    });
+    fetchTasks();
+  };
+
   return (
-    <ul>
+    <ul className="space-y-4">
       {tasks.map((task) => (
-        <li key={task._id} className="mb-2 p-2 border rounded flex justify-between items-center">
-          <div>
-            <h2 className={`${task.isCompleted ? 'line-through' : ''} text-lg font-bold`}>{task.title}</h2>
-            <p>{task.description}</p>
+        <li
+          key={task._id}
+          className="p-4 border rounded flex flex-col md:flex-row justify-between items-center bg-white shadow"
+        >
+          <div className="text-center md:text-left">
+            <h2 className={`text-lg font-bold ${task.isCompleted ? "line-through text-gray-500" : ""}`}>
+              {task.title}
+            </h2>
+            <p className="text-gray-700">{task.description}</p>
             <p className="text-sm text-gray-500">Due: {new Date(task.dueDate).toLocaleDateString()}</p>
           </div>
-          <div>
+          <div className="flex space-x-2 mt-2 md:mt-0">
             <button
               onClick={() => toggleCompletion(task)}
-              className={`mr-2 p-2 rounded ${task.isCompleted ? 'bg-green-500' : 'bg-gray-300'}`}
+              className={`p-2 rounded ${task.isCompleted ? "bg-green-500" : "bg-gray-300"} text-white`}
             >
-              {task.isCompleted ? 'Completed' : 'Mark Complete'}
+              {task.isCompleted ? "Completed" : "Mark Complete"}
             </button>
-            <button
-              onClick={() => deleteTask(task._id)}
-              className="bg-red-500 text-white p-2 rounded"
-            >
+            <button onClick={() => handleDelete(task._id)} className="bg-red-500 text-white p-2 rounded">
               Delete
             </button>
           </div>

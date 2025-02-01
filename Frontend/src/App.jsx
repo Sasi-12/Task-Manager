@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import TaskForm from './components/TaskForm';
-import TaskList from './components/TaskList';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import TaskForm from "./components/TaskForm";
+import TaskList from "./components/TaskList";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -11,33 +11,19 @@ const App = () => {
   }, []);
 
   const fetchTasks = async () => {
-    const response = await axios.get('http://localhost:5000/tasks');
+    const response = await axios.get("http://localhost:5000/tasks");
     setTasks(response.data);
   };
 
-  const addTask = async (task) => {
-    await axios.post('http://localhost:5000/tasks', task);
-    fetchTasks();
-  };
-
-  const toggleCompletion = async (task) => {
-    await axios.put(`http://localhost:5000/tasks/${task._id}`, {
-      ...task,
-      isCompleted: !task.isCompleted,
-    });
-    fetchTasks();
-  };
-
-  const deleteTask = async (id) => {
-    await axios.delete(`http://localhost:5000/tasks/${id}`);
-    fetchTasks();
-  };
-
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Task Manager</h1>
-      <TaskForm addTask={addTask} />
-      <TaskList tasks={tasks} toggleCompletion={toggleCompletion} deleteTask={deleteTask} />
+    <div className="bg-gray-100 min-h-screen p-6">
+      <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lg p-6">
+        <h1 className="text-3xl font-bold text-center text-blue-600 mb-6">
+          Task Manager
+        </h1>
+        <TaskForm fetchTasks={fetchTasks} />
+        <TaskList tasks={tasks} fetchTasks={fetchTasks} />
+      </div>
     </div>
   );
 };
