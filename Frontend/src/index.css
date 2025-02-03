@@ -1,11 +1,10 @@
-/* Reset default styles */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Global styling */
 body {
   font-family: "Arial", sans-serif;
   background-color: #f4f4f4;
@@ -14,7 +13,6 @@ body {
   padding: 20px;
 }
 
-/* Center the container */
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -24,7 +22,6 @@ body {
   border-radius: 8px;
 }
 
-/* Buttons */
 button {
   background: #007bff;
   color: white;
@@ -39,7 +36,6 @@ button:hover {
   background: #0056b3;
 }
 
-/* Input Fields */
 input, textarea {
   width: 100%;
   padding: 10px;
@@ -48,7 +44,6 @@ input, textarea {
   border-radius: 5px;
 }
 
-/* Task List */
 .task {
   background: #fff;
   padding: 15px;
@@ -65,7 +60,6 @@ input, textarea {
   color: #888;
 }
 
-/* Responsive */
 @media (max-width: 600px) {
   .container {
     padding: 15px;
