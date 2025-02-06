@@ -6,7 +6,6 @@ const db = require('./config/db');
 const app = express();
 const PORT = 5000;
 
-// Middleware
 app.use(express.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
